@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Test E-commerce Site</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <h1 class="logo">TestShop</h1>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html" class="active">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container">
+        <section class="contact-section">
+            <h1>Contact Us</h1>
+            <p>Have questions? We'd love to hear from you. Send us a message and we'll respond as soon as possible.</p>
+
+            <div class="contact-grid">
+                <div class="contact-form-container">
+                    <h2>Send us a Message</h2>
+                    <form id="contact-form" onsubmit="handleContactSubmit(event)">
+                        <div class="form-group">
+                            <label for="name">Full Name *</label>
+                            <input type="text" id="name" name="name" required oninput="trackFormField('name')">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" name="email" required oninput="trackFormField('email')">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" oninput="trackFormField('phone')">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="subject">Subject *</label>
+                            <select id="subject" name="subject" required onchange="trackFormField('subject')">
+                                <option value="">Select a subject</option>
+                                <option value="general">General Inquiry</option>
+                                <option value="support">Technical Support</option>
+                                <option value="sales">Sales Question</option>
+                                <option value="feedback">Feedback</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Message *</label>
+                            <textarea id="message" name="message" rows="5" required oninput="trackFormField('message')"></textarea>
+                        </div>
+
+                        <div class="form-group checkbox-group">
+                            <label>
+                                <input type="checkbox" id="newsletter" name="newsletter" onchange="trackFormField('newsletter')">
+                                Subscribe to our newsletter
+                            </label>
+                        </div>
+
+                        <div class="form-group checkbox-group">
+                            <label>
+                                <input type="checkbox" id="terms" name="terms" required onchange="trackFormField('terms')">
+                                I agree to the terms and conditions *
+                            </label>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                        <button type="button" class="btn btn-secondary" onclick="resetForm()">Clear Form</button>
+                    </form>
+                </div>
+
+                <div class="contact-info">
+                    <h2>Get in Touch</h2>
+                    <div class="info-item">
+                        <h3>Address</h3>
+                        <p>123 Test Street<br>Analytics City, AC 12345<br>Testing Country</p>
+                    </div>
+                    <div class="info-item">
+                        <h3>Email</h3>
+                        <p><a href="mailto:info@testshop.com" onclick="trackEmailClick()">info@testshop.com</a></p>
+                    </div>
+                    <div class="info-item">
+                        <h3>Phone</h3>
+                        <p><a href="tel:+1234567890" onclick="trackPhoneClick()">+1 (234) 567-890</a></p>
+                    </div>
+                    <div class="info-item">
+                        <h3>Business Hours</h3>
+                        <p>Monday - Friday: 9:00 AM - 6:00 PM<br>Saturday: 10:00 AM - 4:00 PM<br>Sunday: Closed</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 TestShop. All rights reserved.</p>
+            <div class="social-links">
+                <a href="#" onclick="trackSocialClick('facebook')">Facebook</a>
+                <a href="#" onclick="trackSocialClick('twitter')">Twitter</a>
+                <a href="#" onclick="trackSocialClick('instagram')">Instagram</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- B2Metric Analytics Script -->
+    <script
+        src="https://cdn.jsdelivr.net/gh/B2M-Team/session-replay-script-dist/script.js"
+        data-host="https://sessionreplay-api-test.b2metric.com"
+        data-site-id="6"
+        data-use-custom-session-id="true"
+        defer
+    ></script>
+    <script>
+        window.addEventListener('b2metric:ready', () => {
+            const existingSessionId = window.b2metric.getSessionId();
+            const sessionId = existingSessionId || window.crypto.randomUUID().replace(/-/g, "");
+            console.log('Using session ID:', sessionId);
+            window.b2metric.startSessionReplay(sessionId);
+        });
+
+        let formInteractions = {};
+
+        function trackFormField(fieldName) {
+            if (!formInteractions[fieldName]) {
+                formInteractions[fieldName] = true;
+                console.log('Form field interacted:', fieldName);
+                // Custom tracking could be implemented here if needed
+            }
+        }
+
+        function handleContactSubmit(event) {
+            event.preventDefault();
+
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                subject: document.getElementById('subject').value,
+                message: document.getElementById('message').value,
+                newsletter: document.getElementById('newsletter').checked,
+                terms: document.getElementById('terms').checked
+            };
+
+            console.log('Contact form submitted:', formData);
+            // Custom tracking could be implemented here if needed
+
+            alert('Thank you for your message! We will get back to you soon.');
+            event.target.reset();
+            formInteractions = {};
+        }
+
+        function resetForm() {
+            console.log('Form reset clicked');
+            // Custom tracking could be implemented here if needed
+            document.getElementById('contact-form').reset();
+            formInteractions = {};
+        }
+
+        function trackEmailClick() {
+            console.log('Email link clicked');
+            // Custom tracking could be implemented here if needed
+        }
+
+        function trackPhoneClick() {
+            console.log('Phone link clicked');
+            // Custom tracking could be implemented here if needed
+        }
+
+        function trackSocialClick(platform) {
+            console.log('Social link clicked:', platform);
+            // Custom tracking could be implemented here if needed
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products - Test E-commerce Site</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <h1 class="logo">TestShop</h1>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="products.html" class="active">Products</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container">
+        <section class="products-section">
+            <h1>Our Products</h1>
+
+            <div class="filters">
+                <h3>Filter by Category:</h3>
+                <div class="filter-buttons">
+                    <button class="filter-btn active" onclick="filterProducts('all')">All Products</button>
+                    <button class="filter-btn" onclick="filterProducts('electronics')">Electronics</button>
+                    <button class="filter-btn" onclick="filterProducts('accessories')">Accessories</button>
+                    <button class="filter-btn" onclick="filterProducts('software')">Software</button>
+                </div>
+            </div>
+
+            <div class="sort-options">
+                <label for="sort">Sort by:</label>
+                <select id="sort" onchange="sortProducts(this.value)">
+                    <option value="default">Default</option>
+                    <option value="price-low">Price: Low to High</option>
+                    <option value="price-high">Price: High to Low</option>
+                    <option value="name">Name: A-Z</option>
+                </select>
+            </div>
+
+            <div class="product-grid" id="product-grid">
+                <div class="product-card" data-category="electronics" data-product-id="1">
+                    <img src="https://picsum.photos/300/200" alt="Laptop Pro">
+                    <h3>Laptop Pro</h3>
+                    <p class="description">High-performance laptop for professionals</p>
+                    <p class="price" data-price="999.99">$999.99</p>
+                    <div class="product-actions">
+                        <button class="btn btn-secondary" onclick="addToCart(1, 'Laptop Pro', 999.99, 'electronics')">Add to Cart</button>
+                        <button class="btn-icon" onclick="toggleWishlist(1, 'Laptop Pro')">♥</button>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="accessories" data-product-id="2">
+                    <img src="https://picsum.photos/300/200" alt="Wireless Mouse">
+                    <h3>Wireless Mouse</h3>
+                    <p class="description">Ergonomic wireless mouse with precision tracking</p>
+                    <p class="price" data-price="29.99">$29.99</p>
+                    <div class="product-actions">
+                        <button class="btn btn-secondary" onclick="addToCart(2, 'Wireless Mouse', 29.99, 'accessories')">Add to Cart</button>
+                        <button class="btn-icon" onclick="toggleWishlist(2, 'Wireless Mouse')">♥</button>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="accessories" data-product-id="3">
+                    <img src="https://picsum.photos/300/200" alt="Mechanical Keyboard">
+                    <h3>Mechanical Keyboard</h3>
+                    <p class="description">RGB mechanical keyboard with tactile switches</p>
+                    <p class="price" data-price="149.99">$149.99</p>
+                    <div class="product-actions">
+                        <button class="btn btn-secondary" onclick="addToCart(3, 'Mechanical Keyboard', 149.99, 'accessories')">Add to Cart</button>
+                        <button class="btn-icon" onclick="toggleWishlist(3, 'Mechanical Keyboard')">♥</button>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="electronics" data-product-id="4">
+                    <img src="https://picsum.photos/300/200" alt="4K Monitor">
+                    <h3>4K Monitor</h3>
+                    <p class="description">Ultra HD 27-inch display with HDR support</p>
+                    <p class="price" data-price="449.99">$449.99</p>
+                    <div class="product-actions">
+                        <button class="btn btn-secondary" onclick="addToCart(4, '4K Monitor', 449.99, 'electronics')">Add to Cart</button>
+                        <button class="btn-icon" onclick="toggleWishlist(4, '4K Monitor')">♥</button>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="accessories" data-product-id="5">
+                    <img src="https://picsum.photos/300/200" alt="USB-C Hub">
+                    <h3>USB-C Hub</h3>
+                    <p class="description">Multi-port USB-C adapter with HDMI and SD card reader</p>
+                    <p class="price" data-price="59.99">$59.99</p>
+                    <div class="product-actions">
+                        <button class="btn btn-secondary" onclick="addToCart(5, 'USB-C Hub', 59.99, 'accessories')">Add to Cart</button>
+                        <button class="btn-icon" onclick="toggleWishlist(5, 'USB-C Hub')">♥</button>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="software" data-product-id="6">
+                    <img src="https://picsum.photos/300/200" alt="Productivity Suite">
+                    <h3>Productivity Suite</h3>
+                    <p class="description">Complete office software package</p>
+                    <p class="price" data-price="199.99">$199.99</p>
+                    <div class="product-actions">
+                        <button class="btn btn-secondary" onclick="addToCart(6, 'Productivity Suite', 199.99, 'software')">Add to Cart</button>
+                        <button class="btn-icon" onclick="toggleWishlist(6, 'Productivity Suite')">♥</button>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="electronics" data-product-id="7">
+                    <img src="https://picsum.photos/300/200" alt="Webcam HD">
+                    <h3>Webcam HD</h3>
+                    <p class="description">1080p webcam with auto-focus and noise reduction</p>
+                    <p class="price" data-price="89.99">$89.99</p>
+                    <div class="product-actions">
+                        <button class="btn btn-secondary" onclick="addToCart(7, 'Webcam HD', 89.99, 'electronics')">Add to Cart</button>
+                        <button class="btn-icon" onclick="toggleWishlist(7, 'Webcam HD')">♥</button>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="accessories" data-product-id="8">
+                    <img src="https://picsum.photos/300/200" alt="Laptop Stand">
+                    <h3>Laptop Stand</h3>
+                    <p class="description">Adjustable aluminum laptop stand for better ergonomics</p>
+                    <p class="price" data-price="39.99">$39.99</p>
+                    <div class="product-actions">
+                        <button class="btn btn-secondary" onclick="addToCart(8, 'Laptop Stand', 39.99, 'accessories')">Add to Cart</button>
+                        <button class="btn-icon" onclick="toggleWishlist(8, 'Laptop Stand')">♥</button>
+                    </div>
+                </div>
+
+                <div class="product-card" data-category="software" data-product-id="9">
+                    <img src="https://picsum.photos/300/200" alt="Antivirus Pro">
+                    <h3>Antivirus Pro</h3>
+                    <p class="description">Advanced security suite for complete protection</p>
+                    <p class="price" data-price="79.99">$79.99</p>
+                    <div class="product-actions">
+                        <button class="btn btn-secondary" onclick="addToCart(9, 'Antivirus Pro', 79.99, 'software')">Add to Cart</button>
+                        <button class="btn-icon" onclick="toggleWishlist(9, 'Antivirus Pro')">♥</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 TestShop. All rights reserved.</p>
+            <div class="social-links">
+                <a href="#" onclick="trackSocialClick('facebook')">Facebook</a>
+                <a href="#" onclick="trackSocialClick('twitter')">Twitter</a>
+                <a href="#" onclick="trackSocialClick('instagram')">Instagram</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- B2Metric Analytics Script -->
+    <script
+        src="https://cdn.jsdelivr.net/gh/B2M-Team/session-replay-script-dist/script.js"
+        data-host="https://sessionreplay-api-test.b2metric.com"
+        data-site-id="6"
+        data-use-custom-session-id="true"
+        defer
+    ></script>
+    <script>
+        window.addEventListener('b2metric:ready', () => {
+            const existingSessionId = window.b2metric.getSessionId();
+            const sessionId = existingSessionId || window.crypto.randomUUID().replace(/-/g, "");
+            console.log('Using session ID:', sessionId);
+            window.b2metric.startSessionReplay(sessionId);
+        });
+
+        let currentFilter = 'all';
+        let currentSort = 'default';
+        let wishlist = new Set();
+
+        function filterProducts(category) {
+            currentFilter = category;
+            console.log('Filtering products by category:', category);
+            // Custom tracking could be implemented here if needed
+
+            const cards = document.querySelectorAll('.product-card');
+            cards.forEach(card => {
+                if (category === 'all' || card.dataset.category === category) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+        }
+
+        function sortProducts(sortType) {
+            currentSort = sortType;
+            console.log('Sorting products by:', sortType);
+            // Custom tracking could be implemented here if needed
+
+            const grid = document.getElementById('product-grid');
+            const cards = Array.from(grid.children);
+
+            cards.sort((a, b) => {
+                switch(sortType) {
+                    case 'price-low':
+                        return parseFloat(a.querySelector('.price').dataset.price) - parseFloat(b.querySelector('.price').dataset.price);
+                    case 'price-high':
+                        return parseFloat(b.querySelector('.price').dataset.price) - parseFloat(a.querySelector('.price').dataset.price);
+                    case 'name':
+                        return a.querySelector('h3').textContent.localeCompare(b.querySelector('h3').textContent);
+                    default:
+                        return parseInt(a.dataset.productId) - parseInt(b.dataset.productId);
+                }
+            });
+
+            cards.forEach(card => grid.appendChild(card));
+        }
+
+        function addToCart(productId, productName, price, category) {
+            console.log('Adding to cart:', productName);
+            // Custom tracking could be implemented here if needed
+            alert(`Added ${productName} to cart!`);
+        }
+
+        function toggleWishlist(productId, productName) {
+            const isInWishlist = wishlist.has(productId);
+
+            if (isInWishlist) {
+                wishlist.delete(productId);
+                console.log('Removed from wishlist:', productName);
+                // Custom tracking could be implemented here if needed
+                alert(`Removed ${productName} from wishlist`);
+            } else {
+                wishlist.add(productId);
+                console.log('Added to wishlist:', productName);
+                // Custom tracking could be implemented here if needed
+                alert(`Added ${productName} to wishlist!`);
+            }
+        }
+
+        function trackSocialClick(platform) {
+            console.log('Social link clicked:', platform);
+            // Custom tracking could be implemented here if needed
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Test E-commerce Site</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <h1 class="logo">TestShop</h1>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="about.html" class="active">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container">
+        <section class="about-section">
+            <h1>About TestShop</h1>
+            <p>Welcome to TestShop, a demonstration e-commerce website designed to test analytics tracking and session replay functionality.</p>
+
+            <div class="about-content">
+                <div class="about-box">
+                    <h2>Our Mission</h2>
+                    <p>To provide a comprehensive testing environment for B2Metric analytics integration and help developers ensure their tracking implementations work flawlessly.</p>
+                </div>
+
+                <div class="about-box">
+                    <h2>What We Offer</h2>
+                    <ul>
+                        <li>Multiple page types for testing navigation tracking</li>
+                        <li>Interactive elements for event tracking</li>
+                        <li>Forms for testing form analytics</li>
+                        <li>E-commerce interactions for conversion tracking</li>
+                    </ul>
+                </div>
+
+                <div class="about-box">
+                    <h2>Our Team</h2>
+                    <p>This is a test website created for development and testing purposes. Click around, interact with elements, and observe how the analytics tracking captures user behavior.</p>
+                </div>
+            </div>
+
+            <div class="stats">
+                <div class="stat-item" onclick="trackStatClick('products')">
+                    <h3>100+</h3>
+                    <p>Products</p>
+                </div>
+                <div class="stat-item" onclick="trackStatClick('customers')">
+                    <h3>10,000+</h3>
+                    <p>Happy Customers</p>
+                </div>
+                <div class="stat-item" onclick="trackStatClick('countries')">
+                    <h3>50+</h3>
+                    <p>Countries</p>
+                </div>
+            </div>
+
+            <div class="cta-section">
+                <h2>Ready to Shop?</h2>
+                <p>Explore our wide range of products and experience seamless shopping.</p>
+                <button class="btn btn-primary" onclick="navigateToProducts()">Browse Products</button>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 TestShop. All rights reserved.</p>
+            <div class="social-links">
+                <a href="#" onclick="trackSocialClick('facebook')">Facebook</a>
+                <a href="#" onclick="trackSocialClick('twitter')">Twitter</a>
+                <a href="#" onclick="trackSocialClick('instagram')">Instagram</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- B2Metric Analytics Script -->
+    <script
+        src="https://cdn.jsdelivr.net/gh/B2M-Team/session-replay-script-dist/script.js"
+        data-host="https://sessionreplay-api-test.b2metric.com"
+        data-site-id="6"
+        data-use-custom-session-id="true"
+        defer
+    ></script>
+    <script>
+        window.addEventListener('b2metric:ready', () => {
+            const existingSessionId = window.b2metric.getSessionId();
+            const sessionId = existingSessionId || window.crypto.randomUUID().replace(/-/g, "");
+            console.log('Using session ID:', sessionId);
+            window.b2metric.startSessionReplay(sessionId);
+        });
+
+        function trackStatClick(statType) {
+            console.log('Stat clicked:', statType);
+            // Custom tracking could be implemented here if needed
+        }
+
+        function navigateToProducts() {
+            console.log('Navigate to products clicked');
+            // Custom tracking could be implemented here if needed
+            window.location.href = 'products.html';
+        }
+
+        function trackSocialClick(platform) {
+            console.log('Social link clicked:', platform);
+            // Custom tracking could be implemented here if needed
+        }
+    </script>
+</body>
+</html>
