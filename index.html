@@ -11,6 +11,11 @@
         src="https://edge.b2metric.com/b2m-web-sdk.js"
         data-api-key="sdk_db9a41d53d354892"
         data-event-groups="core,ecommerce,search"
+        data-session-replay="true"
+        data-session-replay-script="https://cdn.jsdelivr.net/gh/B2M-Team/session-replay-script-dist/script.js"
+        data-session-replay-host="https://sessionreplay-api-test.b2metric.com"
+        data-session-replay-site-id="6"
+        data-session-replay-use-custom-session-id="true"
         defer></script>
 </head>
 <body>
@@ -79,21 +84,7 @@
         </div>
     </footer>
 
-    <!-- B2Metric Session Replay Script -->
-    <script
-        src="https://cdn.jsdelivr.net/gh/B2M-Team/session-replay-script-dist/script.js"
-        data-host="https://sessionreplay-api-test.b2metric.com"
-        data-site-id="6"
-        data-use-custom-session-id="true"
-        defer
-    ></script>
     <script>
-        window.addEventListener('b2metric:ready', () => {
-            const existingSessionId = window.b2metric.getSessionId();
-            const sessionId = existingSessionId || window.crypto.randomUUID().replace(/-/g, "");
-            console.log('Using session ID:', sessionId);
-            window.b2metric.startSessionReplay(sessionId);
-        });
 
         // Custom event tracking functions
         function handleCTAClick() {
